@@ -3,7 +3,7 @@ import axios from 'axios';
 // Creamos una instancia de Axios con la configuración base
 const api = axios.create({
   // Asegúrate de que este puerto coincida con el de tu backend (server.js)
-  baseURL: 'http://localhost:4000/api', 
+  baseURL: 'https://hooping-week-backend.onrender.com/api', 
   headers: {
     'Content-Type': 'application/json',
   },
