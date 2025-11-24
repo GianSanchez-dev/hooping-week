@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* --- FULLCALENDAR THEME: HOPPING WEEK EDITION --- */
+
+:root {
+  --fc-border-color: #1e293b; /* slate-800 */
+  --fc-page-bg-color: #0f172a; /* slate-900 */
+  --fc-neutral-bg-color: #0f172a;
+  --fc-list-event-hover-bg-color: #1e293b;
+}
+
+/* 1. TOOLBAR Y BOTONES DE NAVEGACIÓN */
+.fc .fc-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem !important;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  color: #fff;
+  /* Efecto de texto gradiente sutil */
+  background: linear-gradient(to right, #fff, #cbd5e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Estilo base de botones (Prev, Next, Today, Views) */
+.fc .fc-button-primary {
+  background-color: transparent;
+  border: 1px solid #334155; /* slate-700 */
+  color: #94a3b8; /* slate-400 */
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  border-radius: 0px; /* CERO RADIO = Aspecto técnico */
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.fc .fc-button-primary:hover {
+  background-color: #1e293b; /* slate-800 */
+  border-color: #ea580c; /* orange-600 */
+  color: #fff;
+}
+
+/* Botón Activo (Vista actual) */
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+  background-color: #ea580c; /* orange-600 */
+  border-color: #ea580c;
+  color: #fff;
+}
+
+/* Botón "HOY" (Today) - Lo destacamos */
+.fc .fc-today-button {
+  border-color: #ea580c !important;
+  color: #ea580c !important;
+  margin-right: 1rem !important;
+}
+.fc .fc-today-button:hover {
+  background-color: #ea580c !important;
+  color: white !important;
+}
+
+/* Grupo de botones unidos (Prev/Next) */
+.fc .fc-button-group > .fc-button {
+  margin-left: -1px; /* Colapsar bordes dobles */
+}
+
+/* 2. LA GRILLA (CALENDARIO) */
+
+/* Encabezados de columna (LUN, MAR...) */
+.fc-col-header-cell-cushion {
+  color: #64748b; /* slate-500 */
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  text-decoration: none !important;
+}
+
+/* Columna de Horas (Eje Y) */
+.fc-timegrid-slot-label-cushion {
+  color: #475569; /* slate-600 */
+  font-family: 'Courier New', monospace; /* Monospace para datos técnicos */
+  font-size: 0.65rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Líneas de la grilla */
+.fc-theme-standard td, 
+.fc-theme-standard th {
+  border-color: #1e293b; /* slate-800 muy sutil */
+}
+
+/* Día actual (Columna resaltada) */
+.fc-day-today {
+  background-color: rgba(234, 88, 12, 0.03) !important; /* Naranja muy tenue */
+}
+
+/* Indicador de AHORA (Línea roja/naranja) */
+.fc-timegrid-now-indicator-line {
+  border-color: #ea580c;
+  border-width: 2px;
+  box-shadow: 0 0 5px rgba(234, 88, 12, 0.5); /* Glow effect */
+}
+.fc-timegrid-now-indicator-arrow {
+  border-color: #ea580c;
+  border-width: 6px 0 6px 6px; /* Triángulo más afilado */
+}
+
+/* 3. EVENTOS (CHIPS) */
+.fc-event {
+  border: none;
+  border-radius: 2px; /* Ligeramente redondeado o 0 para cuadrado */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  padding: 2px 4px;
+}
+
+.fc-event-main {
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+/* Custom Scrollbar para el calendario */
+.custom-calendar-wrapper ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-calendar-wrapper ::-webkit-scrollbar-track {
+  background: #0f172a; 
+}
+.custom-calendar-wrapper ::-webkit-scrollbar-thumb {
+  background: #334155; 
+  border-radius: 3px;
+}
+
+/* --- AJUSTE DE ALTURA DE CELDAS (src/index.css) --- */
+
+/* Esto define la altura física de cada "slot" en la grilla.
+   Si tu slotDuration es de 1 hora, esto define qué tan alta es esa hora visualmente.
+   4rem (aprox 64px) suele ser ideal para que quepa título + subtítulo.
+*/
+.fc .fc-timegrid-slot {
+  height: 3rem !important; /* Puedes subir a 5rem si quieres más espacio */
+  border-bottom: 1px solid #1e293b; /* Aseguramos que la línea se vea sutil */
+}
+
+/* Ajustamos la alineación del texto de la hora para que quede centrado verticalmente o arriba */
+.fc .fc-timegrid-slot-label-frame {
+  text-align: right;
+  padding-right: 8px;
+}
+
+/* Ajuste interno del evento */
+.fc-event-main {
+  padding: 4px 6px !important; /* Más relleno interno */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrar texto verticalmente si hay espacio */
+  line-height: 1.2;
+}
